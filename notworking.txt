@@ -1,0 +1,28 @@
+Hola!
+execute main.py to run neinjarz
+if its not working, our probably missing a dependancy!
+neinjarz is dependant on
+
+python
+pygame(1.7? not tried 1.8)
+pyopengl
+-glut
+numpy or numeric (i dont know which?)
+psyco (optional, but highly recommended for speed)
+
+
+on ubuntu everything you need can be installed with the line
+sudo apt-get install python-pygame python-numeric python-numpy python-opengl python-psyco
+
+on windows, i will try and make an exe later (having trouble with pyopengl and exes)
+but for the moment, sorry you gotta blunder round the internet looking for the
+deps listed above
+make sure everything is for the same version of python
+
+some links:
+  http://python.org/
+  http://pygame.org/
+  http://pyopengl.sourceforge.net/
+  www.xmission.com/~nate/glut.html
+  http://psyco.sourceforge.net/
+  --still need numpy/numeric

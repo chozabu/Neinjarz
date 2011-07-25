@@ -1,0 +1,41 @@
+8
+
+dir
+2
+http://chozabu.net/neinjarzsvn/trunk/levels/testlevel
+http://chozabu.net/neinjarzsvn
+
+
+
+2008-03-30T00:38:48.156893Z
+1
+chozabu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+695c503e-9349-0410-a8b5-e08b5bdf40e9
+
+njlandscape.png
+file
+
+
+
+
+2008-03-30T13:04:14.000000Z
+ebf6cf0cd9bde1d315ca64f072f446e2
+2008-03-30T00:38:48.156893Z
+1
+chozabu
+has-props
+
