@@ -8,15 +8,15 @@ except ImportError:
 
 #import os
 from random import random
-try:
-    import pygame, sys
-    #import Numeric as N
-    #from pygame.locals import *
-    import pygame.locals as pgl
-    surfarray = pygame.surfarray
-    if not surfarray:raise ImportError
-except ImportError:
-    raise ImportError, 'need pygame and numeric'
+#try:
+import pygame, sys
+#import Numeric as N
+#from pygame.locals import *
+import pygame.locals as pgl
+surfarray = pygame.surfarray
+#if not surfarray:raise ImportError
+#except ImportError:
+#    raise ImportError, 'need pygame and numeric'
 
 from math import hypot
 

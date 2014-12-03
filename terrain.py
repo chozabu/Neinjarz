@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-try:
-    import pygame#, sys
-    import os
-    import Numeric as N
-    from pygame.locals import *
-    surfarray = pygame.surfarray
-    if not surfarray: raise ImportError
-except ImportError:
-    raise ImportError, 'Error Importing Pygame/surfarray or Numeric'
+#try:
+import pygame#, sys
+import os
+#import Numeric as N
+from pygame.locals import *
+surfarray = pygame.surfarray
+if not surfarray: raise ImportError
+#except ImportError:
+#    raise ImportError, 'Error Importing Pygame/surfarray or Numeric'
 
 import OpenGL.GL as GL
 #from OpenGL.GLU import *
