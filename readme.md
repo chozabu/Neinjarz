@@ -3,7 +3,7 @@ Network play is supported
 
 ![screenshot](https://github.com/chozabu/Neinjarz/blob/master/ss.png)  
 
-This game is mostly unmaintained - but shold run OK
+This game is mostly unmaintained - but should run OK
 
 GPLv3 Licence
 
