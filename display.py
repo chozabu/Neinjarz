@@ -32,14 +32,14 @@ def init():
     GL.glOrtho(-sw2,sw2,-sh2,sh2,-2000,2000)
     GL.glMatrixMode(GL.GL_MODELVIEW)
     GL.glLoadIdentity()
-    
+
     GL.glShadeModel(GL.GL_SMOOTH)
     GL.glClearColor(0.5, 0.5, 0.5, 0.0)
     GL.glClearDepth(1.0)
     GL.glEnable(GL.GL_DEPTH_TEST)
     GL.glDepthFunc(GL.GL_LEQUAL)
     GL.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST)
-    
+
     GL.glEnable(GL.GL_TEXTURE_2D)
     GL.glEnable(GL.GL_BLEND)
     GL.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA)
@@ -55,7 +55,7 @@ def setmaxs(x,y):
     global maxx,maxy
     maxx = x-sw2
     maxy = y-sh2
-    
+
 def applycam():
     global camx, camy
     GL.glTranslatef(-camx,-camy, -1200.0)
@@ -68,7 +68,7 @@ def clear():
     GL.glPushMatrix()
     GL.glTranslatef(0,0,-1200)
     GL.glScalef(1000,1000,100)
-    
+
     GL.glDisable(GL.GL_TEXTURE_2D)
     GL.glBegin(GL.GL_QUADS)
     GL.glColor4f(0.8, 0.8, 1.0,0.6)
@@ -132,10 +132,10 @@ def loadpix(filename):
     #        return i[1]
     textureSurface = pygame.image.load(filename)
     #textureData = pygame.image.tostring(textureSurface, "RGBA", True)
-    print "loaded: " + ofn + " as " + str(len(pixnamelist))
+    print( "loaded: " + ofn + " as " + str(len(pixnamelist)) )
     pixnamelist.append((filename,textureSurface,len(pixnamelist)))
     return textureSurface
-    
+
 def loadpixID(filename):
     filename = os.path.join(theme, filename)
     filename = os.path.join("images", filename)
