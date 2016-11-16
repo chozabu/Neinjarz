@@ -181,10 +181,12 @@ class njgame:
                         simplenet.sendserv("join", self.name)
     def drawMenu(self):
         display.clear()
-        display.drawWord(pos=[-50,10,0], string="press W to do single player", color=[1,1,1],size=150)
-        display.drawWord(pos=[-50,30,0], string="press S to Host a game", color=[1,1,1],size=150)
-        display.drawWord(pos=[-50,50,0], string="press C to Join a game", color=[1,1,1],size=150)
-        display.drawWord(pos=[-50,70,0], string="press R to Reset Level", color=[1,1,1],size=150)
+        displayratio = display.sh*0.01
+        tx = -20*displayratio
+        display.drawWord(pos=[tx,0*displayratio,0], string="press W to do single player", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,5*displayratio,0], string="press S to Host a game", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,10*displayratio,0], string="press C to Join a game", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,15*displayratio,0], string="press R to Reset Level", color=[1,1,1],size=displayratio*20)
         #display.applycam()
         #terrain.draw(display.camx,display.camy)
         #for b in self.walkers:
