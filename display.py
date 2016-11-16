@@ -1,4 +1,7 @@
 
+
+import settings
+
 import os
 import sys
 import OpenGL.GL as GL
@@ -11,8 +14,8 @@ from pygame.locals import OPENGL, DOUBLEBUF
 
 theme = "nintenjo"
 
-sw = 1200
-sh = 700
+sw = settings.jdata['xres']
+sh = settings.jdata['yres']
 #sw = 300
 #sh =200
 sw2 = sw/2

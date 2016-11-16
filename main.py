@@ -18,6 +18,8 @@ surfarray = pygame.surfarray
 #except ImportError:
 #    raise ImportError, 'need pygame and numeric'
 
+import settings
+
 from math import hypot
 
 
