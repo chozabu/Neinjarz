@@ -1,5 +1,5 @@
 import socket
-from cPickle import dumps,loads
+from pickle import dumps,loads
 import zlib
 from zlib import compress,decompress
 import select
@@ -46,20 +46,20 @@ def initNet():
     if isServer:
         try:
             sock.bind(('', port))
-            print "servin on port:", port
+            print( "servin on port:", port )
         except socket.error:
-            print "failed to serve"
+            print( "failed to serve" )
             isServer = False
 def nextpacket():
     #global isServer, isClient, port, server, sock
     try:
         packet, peer = sock.recvfrom(0x300000)#aint there a recv all?
     except socket.error:
-        print "error recevin..."
+        print( "error recevin..." )
     try:
         packet = decompress(packet)
         packet = loads(packet)
     except zlib.error:
-        print "error decompressing, increase packet recv buffer?"
+        print( "error decompressing, increase packet recv buffer?" )
         return None,None
     return packet, peer

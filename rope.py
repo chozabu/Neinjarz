@@ -35,8 +35,8 @@ class rope:
             pdy = i.y-self.owner.y
             pdx*= dirx
             pdy*= diry
-            print pdx,pdy
-            
+            print(pdx,pdy)
+
         if xy != None:
             self.x, self.y = xy
             #self.x-=dirx*80

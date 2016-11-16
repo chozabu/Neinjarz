@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-try:
-    import psyco
-    psyco.full()
-except ImportError:
-    print "Get psyco!"
+#try:
+#     import psyco
+#     psyco.full()
+# except ImportError:
+#     print("Get psyco!")
 
 #import os
 from random import random
@@ -67,7 +67,7 @@ class gameStateClass:
         #but should improve the gamestate class, give it some funcs
         #oh, and fix the freaking networking so its good!
         self.walkers.append(player.playerclass(self, "The server", None))
-    
+
 
 class njgame:
     def __init__(self):
@@ -85,7 +85,7 @@ class njgame:
         self.my = 100
         self.mywalker = self.walkers[0]
         #terrain.explode(10,10,1000,0)
-    
+
     def findclient(self, netdata):
         for c in self.clients:
             if c.netdata == None: continue
@@ -101,7 +101,7 @@ class njgame:
             if c.netdata[0] == netdata[0]:
                 return None
         newplayer = player.playerclass(self.gamestate, cname, netdata)
-        print (cname, netdata), "joined"
+        print( (cname, netdata), "joined")
         self.clients.append(newplayer)
         return newplayer
     def doNet(self):
@@ -145,7 +145,7 @@ class njgame:
                     #print pData
                 elif pType=="msg":
                     #addmsg(pData[0], pData[1])
-                    print pData
+                    print(pData)
                 elif pType=="whoyou":
                     simplenet.sendserv("join", self.name)
                 elif pType=="wakeup":
@@ -190,7 +190,7 @@ class njgame:
         #if not simplenet.isServer:
         #    particles.draw()
         pygame.display.flip()
-    
+
     def run(self):
         #self.runMenu()
         #self.initNet()
@@ -209,7 +209,7 @@ class njgame:
                 #particles.update()
                 self.drawstuff()
                 #self.mainloop()
-    
+
     def handleEvent(self, event, cplayer):
         if event.type == pygame.QUIT:
             sys.exit()
@@ -305,7 +305,7 @@ class njgame:
                 #self.ownid = len(self.walkers)-1
             #if event.button == 2:
             #	display.lookat(self.mx, self.my)
-    
+
     def mainloop(self):
         #bind(self.walkers[4], self.walkers[5], 50)
         for b in self.walkers:
@@ -344,7 +344,7 @@ class njgame:
         for i in remlist:
             self.walkers.remove(i)
         #particles.update()
-    
+
     def drawradar(self):
         GL.glLineWidth(2)
         GL.glDisable(GL.GL_TEXTURE_2D)

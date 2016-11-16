@@ -10,7 +10,7 @@ import OpenGL.GL as GL
 
 class multilauncher:
     def __init__(self, owner, ammo, filename):
-	self.scale=1
+        self.scale=1
         self.posmult = 0.01
         self.image = display.loadtex(filename)
         self.loadimage = display.loadtex("nothing.png")
@@ -67,12 +67,12 @@ class multilauncher:
         GL.glTranslatef(self.owner.cx, self.owner.cy, 0.0)
         GL.glRotatef(self.owner.aimgle,0,0,1)
         GL.glTranslatef(0.0, 12, 0.0)
-        
+
         #print flippy
         GL.glTranslatef(self.owner.mx*self.posmult*ohs, self.owner.my*self.posmult*ohs, 0.0)
         GL.glScalef(flippy*self.scale,self.scale,1)
         GL.glScalef(8*ohs,8*ohs,12)
-        
+
         GL.glBindTexture(GL.GL_TEXTURE_2D, self.image)
         if self.timetofire > 3:
           GL.glBindTexture(GL.GL_TEXTURE_2D, self.loadimage)

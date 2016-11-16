@@ -81,17 +81,17 @@ def loadimg(imgname):
     imgrect = data.get_rect()
     x, y, x2, y2 = imgrect
     display.setmaxs(x2, y2)
-    xw = x2/tilesize
-    yw = y2/tilesize
+    xw = int(x2/tilesize)
+    yw = int(y2/tilesize)
     if levelloaded:
       for xdel in tidl:
         for ydel in xdel:
           GL.glDeleteTextures(ydel)
-    tidl = [[-1 for i in range(0, xw)] for r in range(0, yw)]
+    tidl = [[-1 for i in list(range(0, xw, 1))] for r in list(range(0, yw, 1))]
     y = 0
-    for xp in range(0, yw):
+    for xp in list(range(0, yw)):
         x = 0
-        for yp in range(0, xw):
+        for yp in list(range(0, xw)):
             #if not levelloaded:
             tidl[y][x] = settex(x, y)
             #else:
@@ -102,7 +102,7 @@ def loadimg(imgname):
     genterrainlist()
     prime()
     levelloaded = True
-    
+
 toupdate = []
 def updatelist(x, y):
     #x= int(x/tilesize)
@@ -135,7 +135,7 @@ def pastesurf(surf, x, y):
     unprime()
     surf.unlock()
     data.unlock()
-    print data.get_locked()
+    print( data.get_locked() )
     #while(data.get_locked()):
     #    print "unlocking"
     #    print data.unlock()
@@ -144,7 +144,7 @@ def pastesurf(surf, x, y):
     prime()
     tx, ty = getTile(x, y)
     updatelist(tx, ty)
-    
+
     updatelist(tx+1, ty+1)
     updatelist(tx-1, ty+1)
     updatelist(tx, ty+1)
@@ -158,8 +158,8 @@ def updaterad(x, y,radius):
     radius/=tilesize
     x-=radius+1
     y-=radius+1
-    for xp in range(x,x+radius*2+3):
-      for yp in range(y,y+radius*2+3):
+    for xp in list(range(int(x),int(x+radius*2+3))):
+      for yp in list(range(int(y),int(y+radius*2+3))):
         updatelist(xp,yp)
     #return int(x/tilesize), int(y/tilesize)
 
@@ -172,9 +172,9 @@ def explode(x, y, radius = 50, setto = 0):
     x = int(x)
     y = int(y)
     tilex, tiley = getTile(x, y)
-    
+
     updatelist(tilex, tiley)
-    
+
     l = x-radius
     r = x+radp1
     t = y-radius
@@ -195,8 +195,8 @@ def explode(x, y, radius = 50, setto = 0):
         updatelist(tilex+1, tiley-1)
         updatelist(tilex, tiley-1)
         updatelist(tilex-1, tiley-1)'''
-    for xp in range(l, r):
-        for yp in range(t, b):
+    for xp in list(range(int(l), int(r))):
+        for yp in list(range(int(t), int(b))):
             xd = xp-x
             yd = yp-y
             #if imgalpha[xp][yp] > setto:
@@ -222,7 +222,7 @@ def traceline(x, y, dirx, diry, movesleft = 250):
         if getalpha(int(x), int(y)) > 128:
             return x, y
     return None
-    
+
 def getalpha(x, y):
     if x < 1:return 0
     if x > x2-5:return 0
@@ -238,9 +238,9 @@ def getcolour(x, y):
 def getnormal(x, y, rad=1):
     xa = 0.000000001
     ya = 0.000000001
-    
-    for xp in range(-rad, rad+1):
-        for yp in range(-rad, rad+1):
+
+    for xp in list(range(-rad, rad+1)):
+        for yp in list(range(-rad, rad+1)):
             #if imgalpha[xp+x][yp+y] > 128:
             #    xa-=xp
             #    ya-=yp
@@ -257,22 +257,22 @@ def genterrainlist():
       GL.glDeleteLists(listid,1)
     listid = GL.glGenLists(1)
     GL.glNewList(listid, GL.GL_COMPILE)
-    
+
     l = 0
     r = xw
     t = 0
     b = yw
-    
+
     xpos = 0
     ypos = 0
     xpos2 = tilesize
     ypos2 = tilesize
     y = t
-    for xp in range(t, b):
+    for xp in list(range(t, b)):
         x = l
         ypos = y*tilesize
         ypos2 = ypos+tilesize
-        for yp in range(l, r):
+        for yp in list(range(l, r)):
             xpos = x*tilesize
             xpos2 = xpos+tilesize
             GL.glBindTexture(GL.GL_TEXTURE_2D, tidl[y][x])
@@ -289,7 +289,7 @@ def genterrainlist():
             x += 1
         y += 1
     GL.glEndList()
-    
+
 def draw(cx,cy):
     global toupdate,x2,y2
     if len(toupdate) > 0:
@@ -298,7 +298,7 @@ def draw(cx,cy):
         toupdate = []
 
 
-    
+
     GL.glColor4f(1.0, 1.0, 1.0,1.0)
     GL.glCallLists([listid])
     #GL.glTranslatef(0,0,-1000)

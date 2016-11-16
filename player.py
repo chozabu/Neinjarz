@@ -72,7 +72,7 @@ class playerclass:
         self.gun = self.guns[self.gunid]
         self.altgun = rope.rope(self)
         #self.jumpsound = pygame.mixer.Sound('ouh.ogg')
-    
+
         self.upkey = 0
         self.dnkey = 0
         self.ltkey = 0
@@ -130,15 +130,15 @@ class playerclass:
               self.kills-=2
             particles.addTextParticle(cause.x, cause.y, 0.05, str(cause.kills), 300,[1,1,0])
             #print self.name, self.kills, self.damagedealt
-            print self.name, "has", self.kills, " kills and has caused ", self.damagedealt, "damage"
-            print cause.name, "has", cause.kills, " kills and has caused ", cause.damagedealt, "damage"
-            print cause.name, "killed", self.name
-	    print ""
-    
-    
+            print(self.name, "has", self.kills, " kills and has caused ", self.damagedealt, "damage")
+            print(cause.name, "has", cause.kills, " kills and has caused ", cause.damagedealt, "damage")
+            print(cause.name, "killed", self.name)
+        print("")
+
+
     #def packnet(self):
     #    return [self.name, self.netdata, self.x, self.y, self.dnx, self.dny, self.xvel, self.yvel, self.onground, self.wasonground, self.runanim]
-    
+
     def changegun(self, dist):
         self.unshoot()
         self.gunid=(self.gunid+dist)%len(self.guns)
@@ -166,10 +166,10 @@ class playerclass:
         if self.tny < 0.1:
             self.onground = 1
             self.canjump = 1
-    
+
         self.x += self.tnx/2
         self.y += self.tny/2
-    
+
         dp = self.xn*(-self.tny)+self.yn*self.tnx
         self.xn = -self.tny*dp
         self.yn = self.tnx*dp
@@ -183,7 +183,7 @@ class playerclass:
             terrain.explode(int(self.x), int(self.y), 30, 20)
             self.dugg = 1
             self.lastdig = timer.totaltime
-    
+
         #terrain.explode(int(self.x), int(self.y), 4, 128)
     def reaim(self):
         self.camx, self.camy=display.camlimit((self.x+self.gmx)/2, (self.y+self.gmy)/2)
@@ -234,9 +234,9 @@ class playerclass:
         self.altgun.update()
         if terrain.getalpha(int(self.x), int(self.y)) > 128:
             terrain.explode(int(self.x), int(self.y)-19, 20)
-    
 
-    
+
+
         #input
         self.dugg = 0
         self.jumpwait -= 1
@@ -267,7 +267,7 @@ class playerclass:
             self.xvel+=movmult
             #self.yvel+=self.tnx*movmult
             #self.xvel-=self.tny*movmult
-    
+
         #figure some rotation
         #if self.tny> 0.5:self.tnx = 0.5
         self.dnx = self.dnx*0.9+self.tnx*0.1
@@ -275,8 +275,8 @@ class playerclass:
         mag = hypot(self.dnx, self.dny)
         self.dnx/=mag
         self.dny/=mag
-    
-    
+
+
         self.tnx *=0.8
         self.tny = self.tny*0.8-0.2
         mag = hypot(self.tnx, self.tny)
@@ -337,7 +337,7 @@ class playerclass:
             if b.dead:
                 self.bullets.remove(b)
         #return 0
-    
+
     def movev(self, vx, vy):
         vel = hypot(vx, vy)+0.000000001
         #if vel < 1:
@@ -357,7 +357,7 @@ class playerclass:
             movesleft-=1
             if terrain.getalpha(int(self.x), int(self.y)) > 128:
                 self.fixpos()
-    
+
                 xn = self.xn
                 yn = self.yn
                 movesleft+=1
@@ -405,7 +405,7 @@ class playerclass:
             #self.altgun.on = 0
             #self.y=10
             #self.yvel = 0
-    
+
     def drawradar(self):
         GL.glLineWidth(2)
         GL.glDisable(GL.GL_TEXTURE_2D)
@@ -419,14 +419,14 @@ class playerclass:
             GL.glVertex3f(-xd,-yd, 0.0)
             GL.glEnd()
         GL.glEnable(GL.GL_TEXTURE_2D)
-      
+
     def draw(self):
         for b in self.bullets:
             b.draw()
         if self.health < 0:
           return
         GL.glPushMatrix()
-    
+
         angle = -atan2(self.dnx, self.dny)/3.141573*180
         if self.mx <0:
             xscale = -1
@@ -452,13 +452,13 @@ class playerclass:
         GL.glBegin(GL.GL_QUADS)
         GL.glTexCoord2f(0.0, 1.0)
         GL.glVertex3f(1.0, 2.0, 0.0)
-    
+
         GL.glTexCoord2f(1.0, 1.0)
         GL.glVertex3f(-1.0, 2.0, 0.0)
-    
+
         GL.glTexCoord2f(1.0, 0.0)
         GL.glVertex3f(-1.0, 0.0, 0.0)
-    
+
         GL.glTexCoord2f(0.0, 0.0)
         GL.glVertex3f(1.0, 0.0, 0.0)
         GL.glEnd()
