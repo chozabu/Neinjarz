@@ -135,7 +135,7 @@ def pastesurf(surf, x, y):
     unprime()
     surf.unlock()
     data.unlock()
-    print( data.get_locked() )
+    #print( data.get_locked() )
     #while(data.get_locked()):
     #    print "unlocking"
     #    print data.unlock()

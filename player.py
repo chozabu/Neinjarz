@@ -133,7 +133,7 @@ class playerclass:
             print(self.name, "has", self.kills, " kills and has caused ", self.damagedealt, "damage")
             print(cause.name, "has", cause.kills, " kills and has caused ", cause.damagedealt, "damage")
             print(cause.name, "killed", self.name)
-        print("")
+        #print("")
 
 
     #def packnet(self):
