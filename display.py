@@ -70,7 +70,7 @@ def clear():
     GL.glScalef(1,-1,1)
     GL.glPushMatrix()
     GL.glTranslatef(0,0,-1200)
-    GL.glScalef(1000,1000,100)
+    GL.glScalef(sw,sh,100)
 
     GL.glDisable(GL.GL_TEXTURE_2D)
     GL.glBegin(GL.GL_QUADS)
