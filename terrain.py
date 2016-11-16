@@ -75,7 +75,7 @@ def loadimg(imgname):
     global data, imgrect, tidl
     global x2, y2, xw, yw
     data = pygame.image.load(imgname)
-    rescale = 0.5
+    rescale = 1
     if rescale != 1:
       data = pygame.transform.rotozoom(data, 0, rescale)
     imgrect = data.get_rect()
