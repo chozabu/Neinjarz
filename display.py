@@ -9,7 +9,7 @@ import OpenGL.GLUT as GLUT
 #from OpenGL.GLU import *
 
 import pygame
-from pygame.locals import OPENGL, DOUBLEBUF
+from pygame.locals import OPENGL, DOUBLEBUF, RESIZABLE
 
 
 theme = "nintenjo"
@@ -24,10 +24,16 @@ sh2 = sh/2
 ''''''
 #screen = pygame.display.set_mode((sw,sh), OPENGL|DOUBLEBUF | FULLSCREEN | HWSURFACE, 32)
 #screen = pygame.display.set_mode((sw,sh), OPENGL|DOUBLEBUF | FULLSCREEN)
-screen = pygame.display.set_mode((sw,sh), OPENGL|DOUBLEBUF)
+screen = pygame.display.set_mode((sw,sh), OPENGL|DOUBLEBUF|RESIZABLE)
 
-def init():
-    GLUT.glutInit(sys.argv)
+
+def resize(x,y):
+    global sw, sh, sw2, sh2, screen
+    screen = pygame.display.set_mode((x,y), DOUBLEBUF | RESIZABLE | OPENGL)
+    sw=x
+    sh=y
+    sw2=x/2
+    sh2=y/2
     GL.glViewport(0, 0, sw, sh)
     GL.glMatrixMode(GL.GL_PROJECTION)
     GL.glLoadIdentity()
@@ -47,6 +53,11 @@ def init():
     GL.glEnable(GL.GL_BLEND)
     GL.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA)
     GL.glClear(GL.GL_COLOR_BUFFER_BIT|GL.GL_DEPTH_BUFFER_BIT)
+
+def init():
+    GLUT.glutInit(sys.argv)
+    resize(sw, sh)
+
 
 camx = 100
 camy = 100

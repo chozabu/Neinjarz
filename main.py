@@ -217,6 +217,11 @@ class njgame:
     def handleEvent(self, event, cplayer):
         if event.type == pygame.QUIT:
             sys.exit()
+        elif event.type == pgl.VIDEORESIZE:
+            print(event.dict['size'])
+            #screen.blit(pygame.transform.scale(pic, event.dict['size']), (0, 0))
+            display.resize(event.dict['size'][0], event.dict['size'][1])
+            pygame.display.flip()
         elif simplenet.isClient:
             ne = netevent()
             ne.type = event.type
