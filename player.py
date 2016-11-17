@@ -13,6 +13,7 @@ from random import random
 
 #import simplenet
 import particles
+import menu
 
 class playerclass:
     def reset(self):
@@ -130,9 +131,9 @@ class playerclass:
               self.kills-=2
             particles.addTextParticle(cause.x, cause.y, 0.05, str(cause.kills), 300,[1,1,0])
             #print self.name, self.kills, self.damagedealt
-            print(self.name, "has", self.kills, " kills and has caused ", self.damagedealt, "damage")
-            print(cause.name, "has", cause.kills, " kills and has caused ", cause.damagedealt, "damage")
-            print(cause.name, "killed", self.name)
+            menu.addLogText(self.name, "has", self.kills, " kills and has caused ", self.damagedealt, "damage")
+            menu.addLogText(cause.name, "has", cause.kills, " kills and has caused ", cause.damagedealt, "damage")
+            menu.addLogText(cause.name, "killed", self.name)
         #print("")
 
 

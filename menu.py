@@ -11,8 +11,24 @@ from random import random
 
 import display, simplenet, terrain, timer
 
+log = []
+
+
+def addLogText(*items):
+    text = ""
+    for i in items:
+        text += str(i) + " "
+    global log
+    log.append(text)
+    if len(log) > 10:
+        log = log[1:]
 
 class Menu():
+    def __init__(self):
+        self.clearLog()
+    def clearLog(self):
+        global log
+        log = ["This is the log", "press m for the menu"]
     def runMenu(self):
         inmenu = 1
         while inmenu:
@@ -59,3 +75,17 @@ class Menu():
         #if not simplenet.isServer:
         #    particles.draw()
         pygame.display.flip()
+    def addLogText(self, text):
+        global log
+        log.append(text)
+        if len(log)>10:
+            log = log[1:]
+    def drawLog(self):
+        displayratio = display.sh*0.01
+        tx = -display.sw2+2*displayratio
+        li=-1
+        for l in log:
+            li+=1
+            ty = -display.sh2+2*displayratio+li*displayratio*2
+            display.drawWord(pos=[tx+display.camx,ty+display.camy,0], string=l, color=[1,1,1],size=displayratio*20)
+

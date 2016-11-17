@@ -337,6 +337,7 @@ class njgame:
         for b in self.walkers:
             b.draw()
         particles.draw()
+        self.menu.drawLog()
         pygame.display.flip()
 
 def startup():
