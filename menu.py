@@ -24,6 +24,8 @@ def addLogText(*items):
         log = log[1:]
 
 class MainMenu():
+    def __init__(self, menu):
+        self.menu = menu
     def handleEvent(self, event):
         if event.type == 2:#keypress
             if event.key == pgl.K_r:
@@ -43,6 +45,8 @@ class MainMenu():
                 self.name = "nameless"+str(random()*1000)[0:3]
                 simplenet.sendserv("join", self.name)
                 return True
+            if event.key == pgl.K_h:
+                self.menu.currentMenu = self.menu.helpMenu
     def draw(self):
         displayratio = display.sh*0.01
         tx = -20*displayratio
@@ -51,17 +55,35 @@ class MainMenu():
         display.drawWord(pos=[tx,5*displayratio,0], string="press S to Host a game", color=[1,1,1],size=displayratio*20)
         display.drawWord(pos=[tx,10*displayratio,0], string="press C to Join a game", color=[1,1,1],size=displayratio*20)
         display.drawWord(pos=[tx,15*displayratio,0], string="press R to Reset Level", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,25*displayratio,0], string="press H for Help", color=[1,1,1],size=displayratio*20)
 
+class HelpMenu():
+    def __init__(self, menu):
+        self.menu = menu
+    def handleEvent(self, event):
+        if event.type == 2:#keypress
+            self.menu.currentMenu = self.menu.mainMenu
+    def draw(self):
+        displayratio = display.sh*0.01
+        tx = -20*displayratio
+        display.drawWord(pos=[-display.sw2+20,-display.sh2+200,0*displayratio], string="NeinJarz - help", color=[1,1,1],size=displayratio*40)
+        display.drawWord(pos=[tx,0*displayratio,0], string="Press N ingame to create a bot", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,5*displayratio,0], string="Use WSAD to move, CTRL to crouch, space to jump", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,10*displayratio,0], string="Use V to dig, and Q/E or mousewheel to change weapon", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,15*displayratio,0], string="LMB to shoot, RMB to use grapple", color=[1,1,1],size=displayratio*20)
+        display.drawWord(pos=[tx,25*displayratio,0], string="any key to go back to main menu", color=[1,1,1],size=displayratio*20)
 class Menu():
     def __init__(self):
         self.clearLog()
-        self.mainMenu = MainMenu()
+        self.mainMenu = MainMenu(self)
+        self.helpMenu = HelpMenu(self)
         self.currentMenu = self.mainMenu
     def clearLog(self):
         global log
         log = ["This is the log", "press m for the menu"]
     def runMenu(self):
         inmenu = 1
+        self.currentMenu = self.mainMenu
         while inmenu:
             self.drawMenu()
             #time.sleep(1.0/60.0)
